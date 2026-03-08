@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VedaNetra — Vedic Astrology for Android</title>
-  <meta name="description" content="Precise Vedic astrology calculator. South Indian charts, Dasha, Gochara, Panchangam & Horoscope Matching. Available on Android.">
+  <meta name="description" content="Precise Vedic astrology calculator. South Indian charts, Dasha, Gochara, Panchangam & Horoscope Matching — Ashtakoot and 10 Porutham. Available on Android.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -481,7 +481,86 @@
       .koot-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
+    /* ── MATCHING TABS ── */
+    .match-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 32px;
+      border: 1px solid rgba(212,168,67,0.25);
+      border-radius: 6px;
+      overflow: hidden;
+      display: inline-flex;
+    }
+
+    .match-tab {
+      background: transparent;
+      border: none;
+      padding: 12px 32px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: rgba(250,247,240,0.5);
+      cursor: pointer;
+      transition: all 0.25s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      letter-spacing: 0.05em;
+    }
+
+    .match-tab span {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      opacity: 0.6;
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+    }
+
+    .match-tab.active {
+      background: linear-gradient(135deg, rgba(212,168,67,0.2), rgba(212,168,67,0.08));
+      color: var(--gold2);
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .match-tab:not(.active):hover {
+      color: rgba(250,247,240,0.8);
+      background: rgba(255,255,255,0.04);
+    }
+
+    @media (max-width: 600px) {
+      .koot-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .match-tab { padding: 10px 18px; font-size: 0.75rem; }
+    }
+
+    .launch-tag {
+      display: inline-block;
+      background: #C62828;
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      padding: 3px 10px;
+      border-radius: 3px;
+      vertical-align: middle;
+      animation: pulse-red 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-red {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(198,40,40,0.5); }
+      50%       { box-shadow: 0 0 0 6px rgba(198,40,40,0); }
+    }
+
   </style>
+  <script>
+    function showTab(id, btn) {
+      document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.match-tab').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + id).style.display = 'block';
+      btn.classList.add('active');
+    }
+  </script>
 </head>
 <body>
 
@@ -493,8 +572,8 @@
     <p class="hero-subtitle fade-in">Vedic Astrology for Android</p>
     <p class="hero-desc fade-in">
       A precise Jyotish calculator faithful to classical tradition —
-      South Indian charts, Vimshottari Dasha, Gochara transits, Panchangam &amp;
-      Horoscope Matching (Ashtakoot Guna Milan).
+      South Indian charts, Vimshottari Dasha, Gochara, Panchangam &amp;
+      Horoscope Matching in both Ashtakoot and 10 Porutham traditions.
     </p>
     <a class="cta-btn fade-in" href="https://play.google.com/store/apps/details?id=com.vedanetra.app" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor">
@@ -543,7 +622,7 @@
       <div class="feature-card">
         <span class="feature-icon">💞</span>
         <div class="feature-title">Horoscope Matching</div>
-        <p class="feature-desc">Classical Ashtakoot compatibility scoring — 36-point Guna Milan analysis for marriage matching.</p>
+        <p class="feature-desc">Both Ashtakoot (North Indian, 36 Gunas) and 10 Porutham (South Indian) compatibility systems supported.</p>
       </div>
     </div>
   </div>
@@ -554,37 +633,69 @@
       <p class="section-label">Vivah Compatibility</p>
       <h2 class="section-title" style="margin-bottom:16px">Horoscope Matching</h2>
       <p class="matching-desc">
-        Classical Ashtakoot (8-fold) compatibility analysis rooted in Vedic tradition.
-        Used for generations to assess the harmony between two souls before marriage.
+        Two classical compatibility traditions in one app — North Indian Ashtakoot
+        and South Indian 10 Porutham. Faithful to each tradition's original methodology.
       </p>
-      <div class="koot-grid">
-        <div class="koot-item"><span class="koot-name">Varna</span><span class="koot-pts">1 pt</span></div>
-        <div class="koot-item"><span class="koot-name">Vashya</span><span class="koot-pts">2 pts</span></div>
-        <div class="koot-item"><span class="koot-name">Tara</span><span class="koot-pts">3 pts</span></div>
-        <div class="koot-item"><span class="koot-name">Yoni</span><span class="koot-pts">4 pts</span></div>
-        <div class="koot-item"><span class="koot-name">Graha Maitri</span><span class="koot-pts">5 pts</span></div>
-        <div class="koot-item"><span class="koot-name">Gana</span><span class="koot-pts">6 pts</span></div>
-        <div class="koot-item"><span class="koot-name">Rasi</span><span class="koot-pts">7 pts</span></div>
-        <div class="koot-item"><span class="koot-name">Nadi</span><span class="koot-pts">8 pts</span></div>
+
+      <!-- Tab switcher -->
+      <div class="match-tabs">
+        <button class="match-tab active" onclick="showTab('ashta', this)">Ashtakoot <span>North Indian</span></button>
+        <button class="match-tab" onclick="showTab('porutham', this)">10 Porutham <span>South Indian</span></button>
       </div>
-      <div class="matching-total">
-        <span class="total-label">Total</span>
-        <span class="total-score">36 Gunas</span>
+
+      <!-- Ashtakoot -->
+      <div id="tab-ashta" class="tab-content">
+        <div class="koot-grid">
+          <div class="koot-item"><span class="koot-name">Varna</span><span class="koot-pts">1 pt</span></div>
+          <div class="koot-item"><span class="koot-name">Vashya</span><span class="koot-pts">2 pts</span></div>
+          <div class="koot-item"><span class="koot-name">Tara</span><span class="koot-pts">3 pts</span></div>
+          <div class="koot-item"><span class="koot-name">Yoni</span><span class="koot-pts">4 pts</span></div>
+          <div class="koot-item"><span class="koot-name">Graha Maitri</span><span class="koot-pts">5 pts</span></div>
+          <div class="koot-item"><span class="koot-name">Gana</span><span class="koot-pts">6 pts</span></div>
+          <div class="koot-item"><span class="koot-name">Rasi</span><span class="koot-pts">7 pts</span></div>
+          <div class="koot-item"><span class="koot-name">Nadi</span><span class="koot-pts">8 pts</span></div>
+        </div>
+        <div class="matching-total">
+          <span class="total-label">Total</span>
+          <span class="total-score">36 Gunas</span>
+        </div>
+        <p class="matching-note">Also checks Mangal Dosha &amp; Nadi Dosha</p>
       </div>
-      <p class="matching-note">
-        Also checks Mangal Dosha &amp; Nadi Dosha — essential indicators in classical compatibility.
-      </p>
+
+      <!-- 10 Porutham -->
+      <div id="tab-porutham" class="tab-content" style="display:none">
+        <div class="koot-grid" style="grid-template-columns: repeat(5,1fr)">
+          <div class="koot-item"><span class="koot-name">Dinam</span><span class="koot-pts">★</span></div>
+          <div class="koot-item"><span class="koot-name">Ganam</span><span class="koot-pts">★★</span></div>
+          <div class="koot-item"><span class="koot-name">Yoni</span><span class="koot-pts">★★</span></div>
+          <div class="koot-item"><span class="koot-name">Rasi</span><span class="koot-pts">★</span></div>
+          <div class="koot-item"><span class="koot-name">Rajju</span><span class="koot-pts">★★★</span></div>
+          <div class="koot-item"><span class="koot-name">Vedha</span><span class="koot-pts">★★</span></div>
+          <div class="koot-item"><span class="koot-name">Mahendra</span><span class="koot-pts">★</span></div>
+          <div class="koot-item"><span class="koot-name">Stree Deergha</span><span class="koot-pts">★</span></div>
+          <div class="koot-item"><span class="koot-name">Vasiyam</span><span class="koot-pts">★</span></div>
+          <div class="koot-item"><span class="koot-name">Nadi</span><span class="koot-pts">★★★</span></div>
+        </div>
+        <div class="matching-total">
+          <span class="total-label">Total</span>
+          <span class="total-score">10 Poruthams</span>
+        </div>
+        <p class="matching-note">Rajju &amp; Nadi are essential — checked with highest priority</p>
+      </div>
     </div>
   </section>
 
   <!-- PRO -->
   <section class="pro-section">
     <div class="pro-inner">
-      <span class="pro-badge">VedaNetra Pro</span>
+      <span class="pro-badge">VedaNetra Pro &nbsp;·&nbsp; Launch Price</span>
       <p class="section-label">Unlock everything</p>
       <h2 class="section-title" style="margin-bottom:16px">One purchase. Forever.</h2>
       <p class="pro-price">£9.99</p>
-      <p class="pro-price-note">One-time purchase — no subscription, no renewal</p>
+      <p class="pro-price-note">
+        <span class="launch-tag">LAUNCH PRICE</span>
+        &nbsp; Increasing to £14.99 &nbsp;·&nbsp; One-time purchase, no subscription
+      </p>
       <div class="pro-features">
         <div class="pro-feature-item"><span>All divisional charts D2 through D60</span></div>
         <div class="pro-feature-item"><span>Gochara date slider — travel ±50 years</span></div>
@@ -606,10 +717,6 @@
     <div class="footer-name">VedaNetra</div>
     <div class="footer-links">
       <a href="privacy.html">Privacy Policy</a>
-      <a href="mailto:vedanetraapp@email.com">Contact</a>
+      <a href="/cdn-cgi/l/email-protection#3c4a59585d5259484e5d5d4c4c7c5b515d5550125f5351">Contact</a>
     </div>
-    <p class="footer-copy">© 2025 VedaNetra. All rights reserved.</p>
-  </footer>
-
-</body>
-</html>
+    <p class="foot
